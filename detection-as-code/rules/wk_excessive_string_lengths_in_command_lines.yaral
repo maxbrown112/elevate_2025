@@ -1,0 +1,23 @@
+rule wk_excessive_string_lengths_in_command_lines {
+ meta:
+   author = "Google Cloud Security"
+ 
+ events:
+   $process.metadata.event_type = "PROCESS_LAUNCH"
+   $process.target.process.command_line !=""
+   $process.target.process.command_line = $cmdline
+   $process.principal.hostname = $hostname
+ 
+ match:
+   $hostname over 1m
+ 
+ outcome:
+  $event_count = count_distinct($process.metadata.id)
+  $len_cmd_line = max(strings.length($cmdline))
+  $cmd_line = array_distinct(if(strings.length($cmdline) > 500, $cmdline, ""))
+  $avg_cmd_line = window.avg(strings.length($cmdline))
+  $stddev_cmd_line = window.stddev(strings.length($cmdline))
+ 
+ condition:
+   $process and $len_cmd_line > 500
+}

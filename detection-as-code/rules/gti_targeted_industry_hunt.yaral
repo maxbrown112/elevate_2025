@@ -1,0 +1,19 @@
+rule gti_targeted_industry_hunt {
+
+  meta:
+    author = "cmmartin@"
+    description = "Example of a Data Table row-based comparison"
+    severity = "HIGH"
+    priority = "HIGH"
+    source = "https://advantage.mandiant.com/reports/24-10017389"
+
+  events:
+    $e.metadata.event_type = "PROCESS_LAUNCH"
+    $e.target.process.file.md5 in %GTI_24_10017389_MD5.Indicator_Value
+
+  outcome:
+    $risk_score = 35
+
+  condition:
+    $e
+}

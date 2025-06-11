@@ -1,0 +1,30 @@
+rule wk_demo_regex_mitre_attack_T1021_002_windows_admin_share_basic {
+
+  meta:
+    author = "Google Cloud Security"
+    description = "Detect the use of net use for SMB/Windows admin shares"
+    mitre_attack_tactic = "Lateral Movement"
+    mitre_attack_technique = "Remote Services: SMB/Windows Admin Shares"
+    mitre_attack_url = "https://attack.mitre.org/techniques/T1021/002/"
+    mitre_attack_version = "v13.1"
+    type = "alert"
+    platform = "Windows"
+    data_source = "microsoft sysmon, microsoft windows events"
+    severity = "Low"
+    priority = "Low"
+
+  events:
+    $process.metadata.base_labels.namespaces = "LogStory"
+    $process.metadata.event_type = "PROCESS_LAUNCH"
+    $process.target.process.command_line = /net.*use.*(C|ADMIN|IPC)\$/ nocase
+    //re.regex($process.target.process.command_line, `net.*use.*(C|ADMIN|IPC)\$`) nocase
+    //$process.target.process.command_line = /net.*use.*\/delete/ nocase
+    //re.regex($process.target.process.command_line, `net.*use.*/delete`) nocase
+
+  outcome:
+    $target_process_command_line = $process.target.process.command_line
+    //$suspicious = if(re.regex($process.target.process.command_line, `net.*use.*ADMIN\$`) nocase, "Yes", "No")
+
+  condition:
+    $process
+}

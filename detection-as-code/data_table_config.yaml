@@ -1,0 +1,107 @@
+GTI_24_10017389_MD5:
+  columns:
+  - column_index: 0
+    column_type: null
+    key_column: null
+    mapped_column_path: entity.file.md5
+    original_column: Indicator_Value
+  - column_index: 1
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: Indicator_Type
+  - column_index: 2
+    column_type: null
+    key_column: null
+    mapped_column_path: entity.security_result.verdict_info.confidence_score
+    original_column: IC_Score
+  - column_index: 3
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: Associated_Actors
+  - column_index: 4
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: Associated_Malware
+  - column_index: 5
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: Associated_Tools
+  - column_index: 6
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: Associated_Campaigns
+  - column_index: 7
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: Exclusive
+  - column_index: 8
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: First_Seen
+  - column_index: 9
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: Last_Seen
+  create_time: '2024-10-15T23:54:04.959787Z'
+  description: 'Campaign 24.036: Suspected Russia-Nexus Activity Cluster Targets Ukrainian
+    Entities Via Signal Messenger Phishing'
+  resource_name: projects/secops-test-01/locations/us/instances/bd156754-2715-465a-ba27-59e6602952fd/dataTables/GTI_24_10017389_MD5
+  row_time_to_live: null
+  rule_associations_count: 1
+  rules:
+  - projects/936848309925/locations/us/instances/bd156754-2715-465a-ba27-59e6602952fd/rules/ru_a4808201-3bab-4881-af4b-9c91211fcedb
+  update_time: '2024-10-15T23:59:06.371353Z'
+  uuid: a95992d0af41404aa9860274925ac05c
+KNOWN_BOTS:
+  columns:
+  - column_index: 0
+    column_type: CIDR
+    key_column: null
+    mapped_column_path: null
+    original_column: cidr
+  - column_index: 1
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: source
+  create_time: '2024-10-16T00:16:07.225849Z'
+  description: Well known BOTS
+  resource_name: projects/secops-test-01/locations/us/instances/bd156754-2715-465a-ba27-59e6602952fd/dataTables/KNOWN_BOTS
+  row_time_to_live: null
+  rule_associations_count: null
+  rules: null
+  update_time: '2024-10-16T00:21:08.366425Z'
+  uuid: 06b5cbc19761432fa2fbc75b774e65f9
+Suspicious_Ports:
+  columns:
+  - column_index: 0
+    column_type: null
+    key_column: null
+    mapped_column_path: entity.port
+    original_column: port
+  - column_index: 1
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: risk_level
+  - column_index: 2
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: description
+  create_time: '2024-10-16T00:14:09.578851Z'
+  description: Ports of Interest
+  resource_name: projects/secops-test-01/locations/us/instances/bd156754-2715-465a-ba27-59e6602952fd/dataTables/Suspicious_Ports
+  row_time_to_live: null
+  rule_associations_count: null
+  rules: null
+  update_time: '2024-10-16T00:19:10.692737Z'
+  uuid: 90e2044b8eca4350bc55da9ef91f9e97

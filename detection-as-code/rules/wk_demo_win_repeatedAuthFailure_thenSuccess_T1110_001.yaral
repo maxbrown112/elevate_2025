@@ -1,0 +1,41 @@
+rule wk_demo_win_repeatedAuthFailure_thenSuccess_T1110_001 {
+
+  meta:
+    author = "Google Cloud Security"
+    description = "Detect Multiple Failed Login Attempts followed by Successful Login"
+    type = "alert"
+    data_source = "microsoft windows events"
+    platform = "Windows"
+    severity = "Medium"
+    priority = "Medium"
+    mitre_attack_tactic = "Credential Access"
+    mitre_attack_technique = "Brute Force: Password Guessing"
+    mitre_attack_url = "https://attack.mitre.org/techniques/T1110/001/"
+    mitre_attack_version = "v13.1"
+
+  events:
+    $fail.metadata.base_labels.namespaces = "LogStory"
+    $success.metadata.base_labels.namespaces = "LogStory"
+    $fail.metadata.event_type = "USER_LOGIN"
+    $fail.metadata.vendor_name = "Microsoft"
+    $fail.principal.hostname = $hostname
+    $fail.target.user.userid = $user
+    $fail.security_result.action = "BLOCK"
+    $fail.metadata.product_event_type = "4625"
+   
+    $fail.metadata.event_timestamp.seconds < $success.metadata.event_timestamp.seconds
+   
+    $success.metadata.event_type = "USER_LOGIN"
+    $success.metadata.vendor_name = "Microsoft"
+    $success.target.user.userid = $user
+    $success.principal.hostname = $hostname
+    $success.security_result.action = "ALLOW"
+    $success.metadata.product_event_type = "4624"
+
+  match:
+    $user, $hostname over 15m
+
+ 
+  condition:
+    #fail > 4 and $success
+}

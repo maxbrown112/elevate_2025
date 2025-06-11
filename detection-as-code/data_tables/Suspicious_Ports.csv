@@ -1,0 +1,6 @@
+23,	high,	Telnet (unencrypted communication)
+25,	medium,	SMTP (potential for spam)
+139,	high,	NetBIOS (legacy protocol)
+135,	high,	RPC (vulnerable to exploits)
+445,	high,	SMB (vulnerable to exploits)
+3389,	high,	RDP (remote desktop)
